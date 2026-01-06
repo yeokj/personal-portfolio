@@ -73,7 +73,7 @@ img { max-width: 100%; display: block; }
 
 .site-nav {
   display: flex;
-  gap: 16px;
+  gap: 15px;
   align-items: center;
 }
 
@@ -92,7 +92,7 @@ img { max-width: 100%; display: block; }
   border: 1px solid var(--border);
   background: rgba(255, 255, 255, 0.06);
   color: var(--text);
-  border-radius: 10px;
+  border-radius: 9px;
   padding: 8px 10px;
   cursor: pointer;
 }
@@ -106,8 +106,8 @@ img { max-width: 100%; display: block; }
 
 .section-head {
   display: grid;
-  gap: 6px;
-  margin-bottom: 18px;
+  gap: 5px;
+  margin-bottom: 17px;
 }
 
 .section h2 {
@@ -128,7 +128,7 @@ img { max-width: 100%; display: block; }
 
 .hero-content h1 {
   margin: 0 0 10px;
-  font-size: 40px;
+  font-size: 39px;
   line-height: 1.1;
 }
 
