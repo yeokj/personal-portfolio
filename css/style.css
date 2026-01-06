@@ -3,16 +3,24 @@
 ========= */
 
 :root {
-  --bg: #0b0f19;
-  --card: #121a2b;
-  --text: #e7ecff;
-  --muted: #b9c2e2;
-  /* Accent and Matrix-inspired tones */
-  --accent: #39ff14; /* neon green accent */
-  --matrix-glow: rgba(57, 255, 20, 0.10);
-  --border: rgba(255, 255, 255, 0.10);
+  /* Backgrounds */
+  --bg: #041014;         /* page background: near-black with teal hint */
+  --card: #08141a;       /* card background: slightly lighter than page */
+
+  /* Text */
+  --text: #e6f9e6;       /* primary text: light, slightly green-tinted for Matrix feel */
+  --muted: #90a891;      /* muted text/secondary: desaturated green/gray */
+
+  /* Accent (Matrix neon green) */
+  --accent: #39ff14;     /* hex for neon accent */
+  --accent-rgb: 57, 255, 20; /* rgb parts for use in rgba(var(--accent-rgb), a) */
+  --matrix-glow: rgba(var(--accent-rgb), 0.10);
+
+  /* UI surfaces */
+  --border: rgba(255, 255, 255, 0.06);
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
   --radius: 12px;
+
   /* Constrain content for better measure */
   --max: 900px;
   /* Typography tuning */
@@ -29,8 +37,9 @@ html {
 body {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background: radial-gradient(900px 450px at 30% -10%, rgba(122,162,255,0.25), transparent),
-              radial-gradient(900px 450px at 90% 10%, rgba(122,162,255,0.18), transparent),
+  /* very subtle neon-green ambient glow layers atop the dark background */
+  background: radial-gradient(900px 450px at 30% -10%, rgba(var(--accent-rgb), 0.06), transparent),
+              radial-gradient(900px 450px at 90% 10%, rgba(var(--accent-rgb), 0.04), transparent),
               var(--bg);
   color: var(--text);
   font-size: 1rem; /* equals var(--base-font-size) */
@@ -67,7 +76,7 @@ article,
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(11, 15, 25, 0.75);
+  background: rgba(4, 16, 20, 0.75);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
 }
@@ -179,8 +188,8 @@ article,
 .dot { opacity: 0.6; }
 
 .card {
-  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-  border: 1px solid rgba(255,255,255,0.04);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.03);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 20px;
@@ -190,7 +199,7 @@ article,
 .card:hover {
   transform: translateY(-6px);
   box-shadow: 0 22px 44px rgba(0,0,0,0.6), 0 4px 18px var(--matrix-glow);
-  border-color: rgba(57,255,20,0.14);
+  border-color: rgba(var(--accent-rgb), 0.14);
 }
 
 .card-title {
@@ -225,7 +234,7 @@ article,
   padding: 12px;
   border-radius: 12px;
   border: 1px solid var(--border);
-  background: rgba(122, 162, 255, 0.08);
+  background: rgba(var(--accent-rgb), 0.06);
 }
 
 /* =========
@@ -327,12 +336,13 @@ article,
 }
 
 .btn.primary {
-  border-color: rgba(122, 162, 255, 0.55);
-  background: rgba(122, 162, 255, 0.18);
+  border-color: rgba(var(--accent-rgb), 0.55);
+  background: rgba(var(--accent-rgb), 0.12);
+  color: var(--text); /* use light site text for better readability */
 }
 
 .btn.primary:hover {
-  background: rgba(122, 162, 255, 0.26);
+  background: rgba(var(--accent-rgb), 0.18);
 }
 
 .btn.small {
@@ -363,8 +373,8 @@ input, textarea {
 }
 
 input:focus, textarea:focus {
-  outline: 2px solid rgba(122, 162, 255, 0.55);
-  border-color: rgba(122, 162, 255, 0.55);
+  outline: 2px solid rgba(var(--accent-rgb), 0.55);
+  border-color: rgba(var(--accent-rgb), 0.55);
 }
 
 .form-note {
