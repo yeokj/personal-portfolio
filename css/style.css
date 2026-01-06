@@ -7,10 +7,12 @@
   --card: #121a2b;
   --text: #e7ecff;
   --muted: #b9c2e2;
-  --accent: #7aa2ff;
+  /* Accent and Matrix-inspired tones */
+  --accent: #39ff14; /* neon green accent */
+  --matrix-glow: rgba(57, 255, 20, 0.10);
   --border: rgba(255, 255, 255, 0.10);
-  --shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-  --radius: 16px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+  --radius: 12px;
   /* Constrain content for better measure */
   --max: 900px;
   /* Typography tuning */
@@ -177,11 +179,18 @@ article,
 .dot { opacity: 0.6; }
 
 .card {
-  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.04);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 18px;
+  padding: 20px;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 44px rgba(0,0,0,0.6), 0 4px 18px var(--matrix-glow);
+  border-color: rgba(57,255,20,0.14);
 }
 
 .card-title {
@@ -225,12 +234,25 @@ article,
 .projects-grid {
   display: grid;
   gap: 14px;
-  grid-template-columns: repeat(3, 1fr);
+  /* Responsive: auto-fit columns with a comfortable minimum card width */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 .project h3 {
   margin: 0 0 8px;
   font-size: 18px;
+}
+
+/* Subtle project hover treatment (applies when project uses .card or direct hover) */
+.project:hover .card,
+.project:focus-within .card {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.58), 0 6px 18px var(--matrix-glow);
+}
+
+/* Gentle glow on accent elements when hovered */
+.accent:hover, .brand-mark:hover {
+  text-shadow: 0 0 10px var(--accent);
 }
 
 .tags {
