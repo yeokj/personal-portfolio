@@ -163,6 +163,13 @@ article,
   align-items: start;
 }
 
+.hero-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
 .hero-content h1 {
   margin: 0 0 10px;
   font-size: clamp(1.6rem, 4.2vw, 2.4rem);
@@ -210,6 +217,45 @@ article,
 .card-title {
   margin: 0 0 10px;
   font-size: 18px;
+}
+
+/* Profile image used in hero */
+.profile {
+  width: 100%;
+  /* make image match the quick snapshot card height by using a shared variable */
+  --hero-card-height: 220px;
+  /* vertical focal point (use percent to move the image inside the cover area)
+     lower percent = move image up (shows upper part of photo), higher percent = move down */
+  --profile-pos: 7%;
+  height: var(--hero-card-height);
+  object-fit: cover;
+  object-position: center var(--profile-pos);
+  border-radius: 12px;
+  border: 2px solid rgba(5,34,53,0.06);
+  box-shadow: 0 8px 20px rgba(2,20,40,0.08);
+}
+
+@media (max-width: 700px) {
+  .profile { width: 110px; height: 110px; }
+  .hero-grid { grid-template-columns: 1fr; }
+}
+
+/* helper utility classes if you want quick adjustments in HTML
+   e.g. <img class="profile profile--up" style="--profile-pos:25%"> */
+.profile--up { --profile-pos: 25%; }
+.profile--down { --profile-pos: 35%; }
+
+/* ensure the card in the hero matches the same fixed height so they look identical */
+.hero-card .card {
+  width: 100%;
+  height: var(--hero-card-height);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (max-width: 700px) {
+  .hero-card .card { height: auto; }
 }
 
 .two-col {
