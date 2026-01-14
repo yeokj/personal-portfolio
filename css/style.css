@@ -3,22 +3,24 @@
 ========= */
 
 :root {
+  /* Sky Sanctuary inspired palette */
   /* Backgrounds */
-  --bg: #041014;         /* page background: near-black with teal hint */
-  --card: #08141a;       /* card background: slightly lighter than page */
+  --bg: #cfeeff;         /* light sky blue */
+  --bg-soft: #a6e6ff;    /* secondary sky tone for gradients */
+  --card: rgba(255, 255, 255, 0.96); /* near-white card */
 
   /* Text */
-  --text: #e6f9e6;       /* primary text: light, slightly green-tinted for Matrix feel */
-  --muted: #90a891;      /* muted text/secondary: desaturated green/gray */
+  --text: #052235;       /* dark navy for strong contrast */
+  --muted: #4a7aa0;      /* softer blue-gray for secondary text */
 
-  /* Accent (Matrix neon green) */
-  --accent: #39ff14;     /* hex for neon accent */
-  --accent-rgb: 57, 255, 20; /* rgb parts for use in rgba(var(--accent-rgb), a) */
-  --matrix-glow: rgba(var(--accent-rgb), 0.10);
+  /* Accent (gold from level decorations) */
+  --accent: #ffd24c;     /* warm gold/yellow */
+  --accent-rgb: 255, 210, 76; /* rgb parts for use in rgba(var(--accent-rgb), a) */
+  --accent-glow: rgba(var(--accent-rgb), 0.12);
 
   /* UI surfaces */
-  --border: rgba(255, 255, 255, 0.06);
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+  --border: rgba(5, 34, 53, 0.06);
+  --shadow: 0 10px 30px rgba(2, 20, 40, 0.08);
   --radius: 12px;
 
   /* Constrain content for better measure */
@@ -32,15 +34,17 @@
 * { box-sizing: border-box; }
 html {
   scroll-behavior: smooth;
+  /* account for the sticky header so in-page anchors land below it */
+  scroll-padding-top: 84px;
   font-size: var(--base-font-size);
 }
 body {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  /* very subtle neon-green ambient glow layers atop the dark background */
-  background: radial-gradient(900px 450px at 30% -10%, rgba(var(--accent-rgb), 0.06), transparent),
-              radial-gradient(900px 450px at 90% 10%, rgba(var(--accent-rgb), 0.04), transparent),
-              var(--bg);
+  /* bright sky gradient with soft cloud highlights */
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 60%, #eaf7ff 100%),
+              radial-gradient(800px 200px at 10% 10%, rgba(255,255,255,0.6), transparent),
+              radial-gradient(700px 180px at 90% 20%, rgba(255,255,255,0.45), transparent);
   color: var(--text);
   font-size: 1rem; /* equals var(--base-font-size) */
   line-height: var(--base-line-height);
@@ -76,9 +80,10 @@ article,
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(4, 16, 20, 0.75);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(5,34,53,0.08);
+  color: var(--text);
 }
 
 .nav-row {
@@ -120,8 +125,8 @@ article,
 
 .nav-toggle {
   display: none;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(5,34,53,0.08);
+  background: rgba(255,255,255,0.9);
   color: var(--text);
   border-radius: 9px;
   padding: 8px 10px;
@@ -188,8 +193,8 @@ article,
 .dot { opacity: 0.6; }
 
 .card {
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border: 1px solid rgba(255,255,255,0.03);
+  background: var(--card);
+  border: 1px solid rgba(5,34,53,0.06);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 20px;
@@ -198,8 +203,8 @@ article,
 
 .card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 22px 44px rgba(0,0,0,0.6), 0 4px 18px var(--matrix-glow);
-  border-color: rgba(var(--accent-rgb), 0.14);
+  box-shadow: 0 22px 44px rgba(2,20,40,0.12), 0 4px 18px var(--accent-glow);
+  border-color: rgba(var(--accent-rgb), 0.18);
 }
 
 .card-title {
@@ -233,8 +238,8 @@ article,
   margin-top: 14px;
   padding: 12px;
   border-radius: 12px;
-  border: 1px solid var(--border);
-  background: rgba(var(--accent-rgb), 0.06);
+  border: 1px solid rgba(5,34,53,0.06);
+  background: linear-gradient(90deg, rgba(var(--accent-rgb), 0.06), rgba(255,255,255,0.02));
 }
 
 /* =========
@@ -261,7 +266,7 @@ article,
 
 /* Gentle glow on accent elements when hovered */
 .accent:hover, .brand-mark:hover {
-  text-shadow: 0 0 10px var(--accent);
+  text-shadow: 0 0 12px var(--accent);
 }
 
 .tags {
@@ -274,10 +279,10 @@ article,
 .tag {
   font-size: 12px;
   color: var(--muted);
-  border: 1px solid var(--border);
+  border: 1px solid rgba(5,34,53,0.06);
   border-radius: 999px;
   padding: 6px 10px;
-  background: rgba(255,255,255,0.04);
+  background: rgba(240,248,255,0.6);
 }
 
 .project-actions {
@@ -323,26 +328,26 @@ article,
   gap: 8px;
   border-radius: 12px;
   padding: 10px 14px;
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(5,34,53,0.06);
+  background: rgba(255,255,255,0.9);
   color: var(--text);
   cursor: pointer;
   text-decoration: none;
 }
 
 .btn:hover {
-  background: rgba(255,255,255,0.10);
+  background: rgba(255,255,255,1);
   text-decoration: none;
 }
 
 .btn.primary {
-  border-color: rgba(var(--accent-rgb), 0.55);
-  background: rgba(var(--accent-rgb), 0.12);
-  color: var(--text); /* use light site text for better readability */
+  border-color: rgba(var(--accent-rgb), 0.95);
+  background: linear-gradient(90deg, rgba(var(--accent-rgb), 0.98), rgba(var(--accent-rgb), 0.85));
+  color: #042034; /* dark text on gold */
 }
 
 .btn.primary:hover {
-  background: rgba(var(--accent-rgb), 0.18);
+  filter: brightness(0.98);
 }
 
 .btn.small {
@@ -366,15 +371,15 @@ label {
 input, textarea {
   font: inherit;
   color: var(--text);
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.98);
+  border: 1px solid rgba(5,34,53,0.06);
   border-radius: 12px;
   padding: 10px 12px;
 }
 
 input:focus, textarea:focus {
-  outline: 2px solid rgba(var(--accent-rgb), 0.55);
-  border-color: rgba(var(--accent-rgb), 0.55);
+  outline: 2px solid rgba(var(--accent-rgb), 0.25);
+  border-color: rgba(var(--accent-rgb), 0.25);
 }
 
 .form-note {
@@ -387,9 +392,9 @@ input:focus, textarea:focus {
    Footer
 ========= */
 .site-footer {
-  border-top: 1px solid var(--border);
+  border-top: 1px solid rgba(5,34,53,0.06);
   padding: 20px 0;
-  background: rgba(0,0,0,0.12);
+  background: transparent;
 }
 
 .footer-row {
